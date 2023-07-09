@@ -12,8 +12,8 @@ and to have a public API that wraps the function's return value into a `Result<T
 (see example [here](https://docs.rs/wasm-bindgen/0.2.87/wasm_bindgen/struct.JsError.html#complex_example)
 at `wasm_bindgen` documentation).
 For a library with both a WASM build and a standard library build, however,
-this could create a redundant API,
-with multiple `#[wasm_bindgen]` options that only wrap the internal function.
+this could create a redundant API
+with multiple `#[wasm_bindgen]` functions that only wrap the internal function.
 
 An alternative solution is to trivially implement `Into<JsValue>` for the error type:
 
@@ -66,8 +66,8 @@ pub fn func_returns_result() -> Result<(), TestError> {
 Licensed under either of [Apache License (Version 2.0)](LICENSE-APACHE)
 or [MIT license](LICENSE-MIT) at your option.
 
-Unless you explicitly state otherwise, any contribution
-intentionally submitted for inclusion in this crate by you,
+Unless you explicitly state otherwise,
+any contribution intentionally submitted for inclusion in this crate by you,
 as defined in the Apache-2.0 license,
 shall be dual licensed as above,
 without any additional terms or conditions.
