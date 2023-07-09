@@ -12,8 +12,9 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+          profile: minimal
+          components: rust-doc
           override: true
-          components: rustdoc
       - name: Run `cargo check`
         uses: actions-rs/cargo@v1
         with:
