@@ -1,25 +1,23 @@
 name: Testing
 
-on: [push]
+on:
+  push:
+    paths:
+      - '**.rs'
+
+env:
+  CARGO_TERM_COLOR: always
 
 jobs:
-  check-and-test:
+  test:
+    name: Run tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
+      - name: Install rust stable toolchain
+        uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: stable
-          profile: minimal
           components: rust-docs
-          override: true
-      - name: Run `cargo check`
-        uses: actions-rs/cargo@v1
-        with:
-          command: check
-      - name: Run `cargo test`
-        uses: actions-rs/cargo@v1
-        with:
-          command: test
+      - name: '`cargo test`'
+        run: cargo test --tests
